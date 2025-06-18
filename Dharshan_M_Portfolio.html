@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="portfolioApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dharshan M - Portfolio</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f7f7f7, #e3f2fd);
+      color: #333;
+    }
+
+    header {
+      background: url('https://www.transparenttextures.com/patterns/graphy.png'), #0d47a1;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    header p, header a {
+      font-size: 1em;
+      color: #bbdefb;
+      margin: 5px 0;
+    }
+
+    section {
+      background: white;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      max-width: 960px;
+    }
+
+    h2 {
+      border-left: 5px solid #0d47a1;
+      padding-left: 10px;
+      color: #0d47a1;
+      margin-top: 0;
+    }
+
+    h3 {
+      color: #1e88e5;
+      margin-bottom: 5px;
+    }
+
+    ul {
+      margin-top: 5px;
+      padding-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      background: #0d47a1;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    a {
+      color: #1565c0;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body ng-controller="PortfolioController">
+
+  <header>
+    <h1>{{name}}</h1>
+    <p>{{location}}</p>
+    <p>📧 {{email}} | 📞 {{phone}}</p>
+    <p><a href="{{linkedin}}" target="_blank">LinkedIn Profile</a></p>
+  </header>
+
+  <section>
+    <h2>Professional Summary</h2>
+    <p>{{summary}}</p>
+  </section>
+
+  <section>
+    <h2>Professional Experience</h2>
+    <div ng-repeat="job in experience">
+      <h3>{{job.title}} - {{job.company}}</h3>
+      <p><em>{{job.period}}</em></p>
+      <ul>
+        <li ng-repeat="point in job.details">{{point}}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <h3>{{project.title}}</h3>
+    <p><strong>Tech Stack:</strong> {{project.tech}}</p>
+    <ul>
+      <li ng-repeat="detail in project.details">{{detail}}</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <ul>
+      <li ng-repeat="edu in education">{{edu}}</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Technical Skills</h2>
+    <ul>
+      <li ng-repeat="skill in skills">{{skill}}</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Certifications</h2>
+    <ul>
+      <li ng-repeat="cert in certifications">{{cert}}</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Career Objective</h2>
+    <p>{{objective}}</p>
+  </section>
+
+  <footer>
+    © {{year}} Dharshan M. All rights reserved.
+  </footer>
+
+  <script>
+    angular.module('portfolioApp', []).controller('PortfolioController', function($scope) {
+      $scope.name = "Dharshan M";
+      $scope.location = "Chennai, Tamil Nadu, India";
+      $scope.email = "dharshann2115@gmail.com";
+      $scope.phone = "+91 90250 66629";
+      $scope.linkedin = "https://www.linkedin.com/in/dharshan-mahendra-kumar-ba424a280";
+
+      $scope.summary = "Detail-oriented and growth-driven Front-End Developer pursuing M.Tech from BITS Pilani via Wipro WILP. Experienced in Angular development with strong focus on scalable UIs and clean code.";
+
+      $scope.experience = [
+        {
+          title: "Software Development Engineer - I (SDE-I)",
+          company: "Wipro",
+          period: "Mar 2025 – Present",
+          details: [
+            "Developed UI for customer service portal using Angular and REST APIs, reducing handling time by 20%.",
+            "Reduced frontend load time by 25% using lazy loading and modularity.",
+            "Implemented unit tests with Jasmine and Karma, achieving 85% test coverage.",
+            "Collaborated with backend teams for seamless API integration."
+          ]
+        },
+        {
+          title: "Technical Consultant",
+          company: "Sutherland Global Services",
+          period: "Jun 2024 – Feb 2025",
+          details: [
+            "Resolved UI/UX issues for Amazon clients with a 98% resolution rate.",
+            "Served as one-day project manager for 3 consecutive months to meet client metrics.",
+            "Streamlined issue documentation and mentoring new hires."
+          ]
+        }
+      ];
+
+      $scope.project = {
+        title: "Workout Recommendation Web App",
+        tech: "Python, Tkinter",
+        details: [
+          "Built a personalized fitness recommendation engine using Python.",
+          "Created GUI using Tkinter with 40% improved responsiveness.",
+          "Applied modular design and real-world input handling."
+        ]
+      };
+
+      $scope.education = [
+        "M.Tech – BITS Pilani (via Wipro WILP Program) – Ongoing",
+        "BCA – Sri Krishna Adithya College of Arts and Science, Coimbatore (Jul 2021 – Jul 2024)"
+      ];
+
+      $scope.skills = [
+        "Angular", "TypeScript", "JavaScript", "HTML5", "CSS3",
+        "Git", "GitHub", "GitHub Copilot", "npm", "Webpack",
+        "Jasmine", "Karma", "REST APIs", "Postman",
+        "VS Code", "Figma", "MySQL", "Java", "Spring Boot"
+      ];
+
+      $scope.certifications = [
+        "GitHub Copilot – L3 Certified (Wipro)",
+        "Java Full Stack Development – L1 (Wipro)",
+        "Angular – L1 Trained (Wipro)",
+        "Spring Boot (Udemy)"
+      ];
+
+      $scope.objective = "To become a globally competitive software engineer, building responsive and impactful applications that solve real-world problems.";
+      $scope.year = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
